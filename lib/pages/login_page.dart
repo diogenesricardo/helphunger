@@ -1,4 +1,5 @@
 import 'package:ajudafome/pages/home_page.dart';
+import 'package:ajudafome/pages/signup_page.dart';
 import 'package:ajudafome/utils/alert.dart';
 import 'package:ajudafome/utils/firebase_service.dart';
 import 'package:ajudafome/widgets/button_help.dart';
@@ -21,15 +22,35 @@ class LoginPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Expanded(
-            child: Image.network(
-                "https://static.thenounproject.com/png/26617-200.png"),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.network(
+                    "https://static.thenounproject.com/png/26617-200.png"),
+                Container(
+                  child: InkWell(
+                    onTap: () => _onClickSignup(context),
+                    child: Text(
+                      "Cadastre-se",
+                      style: TextStyle(
+                          fontSize: 24,
+                          decoration: TextDecoration.underline,
+                          color: Colors.brown),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
 //        crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              ButtonHelp("Continuar sem identificação",
-                  () => _onClickEmailPassword(context)),
+              Container(
+                width: 280,
+                child: ButtonHelp("Login com email e senha",
+                    () => _onClickEmailPassword(context)),
+              ),
               FacebookSignInButton(
                   borderRadius: 10.0,
                   onPressed: () {
@@ -39,10 +60,6 @@ class LoginPage extends StatelessWidget {
                 borderRadius: 10.0,
                 onPressed: () => _onClickGoogleLogin(context),
                 darkMode: true, // default: false
-              ),
-              TwitterSignInButton(
-                onPressed: () {},
-                borderRadius: 10.0,
               ),
             ],
           ),
@@ -75,5 +92,11 @@ class LoginPage extends StatelessWidget {
     } else {
       Alerts.alert(context, "Erro", response.msg);
     }
+  }
+
+  _onClickSignup(context) {
+    print("Cadastre-se");
+
+    NavigatorHelper.push(context, SignupPage());
   }
 }
