@@ -142,10 +142,10 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
                 onPressed: () {
-                  _onClickContinuar(context);
+                  NavigatorHelper.pop(context);
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -162,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
       if (response.ok) {
 //        userModel.savePrefs();
 
-        NavigatorHelper.push(context, HomePage());
+        NavigatorHelper.pushReplacement(context, HomePage());
       } else {
         Alerts.alert(context, "Erro", response.msg);
       }

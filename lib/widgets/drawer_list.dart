@@ -55,23 +55,16 @@ class DrawerList extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                print("Item 1");
+                print("Doações Recebidas");
               },
               title: Text("Item 1"),
               leading: Icon(Icons.star),
             ),
             ListTile(
               onTap: () {
-                print("Item 2");
+                print("Doações efetuadas");
               },
               title: Text("Item 2"),
-              leading: Icon(Icons.star),
-            ),
-            ListTile(
-              onTap: () {
-                print("Item 3");
-              },
-              title: Text("Item 3"),
               leading: Icon(Icons.star),
             ),
             ListTile(
@@ -80,13 +73,6 @@ class DrawerList extends StatelessWidget {
               },
               title: Text("Configurações"),
               leading: Icon(Icons.settings),
-            ),
-            ListTile(
-              onTap: () {
-                print("Ajuda");
-              },
-              title: Text("Visite o site"),
-              leading: Icon(Icons.web),
             ),
             ListTile(
               onTap: () {
