@@ -30,6 +30,21 @@ class FirebaseService {
     return Response(true, "Login efetuado com sucesso");
   }
 
+  Future<Response> loginEmailPassword() async {
+
+    // Usuario do Firebase
+    final AuthResult fuser = await _auth.signInWithEmailAndPassword(email: "anakin@gmail.com", password: "123456");
+    print("signed in " + fuser.user.email ?? "Novo usuário");
+
+    // Cria um usuario do app
+    final user =
+        User(fuser.user.displayName ?? "Novo usuário", fuser.user.email, fuser.user.email);
+    user.save();
+
+    // Resposta genérica
+    return Response(true, "Login efetuado com sucesso");
+  }
+
   Future<void> logout() async {
     await _auth.signOut();
     await _googleSignIn.signOut();

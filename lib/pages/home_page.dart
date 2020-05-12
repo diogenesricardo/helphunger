@@ -2,7 +2,7 @@ import 'package:ajudafome/pages/helped_page.dart';
 import 'package:ajudafome/pages/helper_page.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:ajudafome/widgets/drawer_list.dart';
-import 'package:ajudafome/widgets/main_buttons.dart';
+import 'package:ajudafome/widgets/button_help.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

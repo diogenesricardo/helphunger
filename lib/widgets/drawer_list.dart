@@ -20,7 +20,9 @@ class DrawerList extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     final user = snapshot.data;
-                    return Text(user.displayName);
+                    return user.displayName != null
+                        ? Text(user.displayName)
+                        : Text("Novo usuário");
                   }
                   return Text("");
                 },
@@ -41,8 +43,10 @@ class DrawerList extends StatelessWidget {
                   if (snapshot.hasData) {
                     final user = snapshot.data;
                     return CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          user.photoUrl),
+                      backgroundImage: user.photoUrl != null
+                          ? NetworkImage(user.photoUrl)
+                          : NetworkImage(
+                              "https://static.thenounproject.com/png/26617-200.png"),
                     );
                   }
                   return Text("");
@@ -113,6 +117,5 @@ class DrawerList extends StatelessWidget {
     NavigatorHelper.pop(context);
     NavigatorHelper.pushReplacement(context, LoginPage());
     User.clear();
-
   }
 }

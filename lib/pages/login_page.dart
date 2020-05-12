@@ -1,12 +1,12 @@
 import 'package:ajudafome/pages/home_page.dart';
 import 'package:ajudafome/utils/alert.dart';
 import 'package:ajudafome/utils/firebase_service.dart';
+import 'package:ajudafome/widgets/button_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:ajudafome/utils/nav.dart';
 
 class LoginPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
         body: _body(context));
   }
 
-  _body(context){
+  _body(context) {
     return Center(
       child: Column(
         children: <Widget>[
@@ -28,6 +28,8 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
 //        crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              ButtonHelp("Continuar sem identificação",
+                  () => _onClickEmailPassword(context)),
               FacebookSignInButton(
                   borderRadius: 10.0,
                   onPressed: () {
@@ -49,11 +51,24 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _onClickGoogleLogin(context) async{
+  _onClickGoogleLogin(context) async {
     print("Google");
 
     final service = FirebaseService();
     final response = await service.loginGoogle();
+
+    if (response.isOk()) {
+      NavigatorHelper.push(context, HomePage());
+    } else {
+      Alerts.alert(context, "Erro", response.msg);
+    }
+  }
+
+  _onClickEmailPassword(context) async {
+    print("Firebase Login");
+
+    final service = FirebaseService();
+    final response = await service.loginEmailPassword();
 
     if (response.isOk()) {
       NavigatorHelper.push(context, HomePage());
