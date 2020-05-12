@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "355680501236",
+    "firebase_url": "https://ajuda-fome.firebaseio.com",
+    "project_id": "ajuda-fome",
+    "storage_bucket": "ajuda-fome.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355680501236:android:03a698d984069052e88da1",
+        "android_client_info": {
+          "package_name": "com.clicksky.ajudafome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355680501236-rpksar0j774ki8nqnbn981a29tqu2lbj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clicksky.ajudafome",
+            "certificate_hash": "29d72ece412030a99052b8b44be49d6476b8f8ea"
+          }
+        },
+        {
+          "client_id": "355680501236-uli0i21cm7gt334io8oa0c8ih9104c02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP5EVGaVuufiAsaonKVes0WsBARMIlEsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355680501236-uli0i21cm7gt334io8oa0c8ih9104c02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
