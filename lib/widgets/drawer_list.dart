@@ -113,8 +113,7 @@ class DrawerList extends StatelessWidget {
     final service = FirebaseService();
     service.logout();
 
-    print("Logout");
-    NavigatorHelper.pop(context);
+//    NavigatorHelper.pop(context);
     NavigatorHelper.pushReplacement(context, LoginPage());
     User.clear();
   }

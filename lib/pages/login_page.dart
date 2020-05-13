@@ -75,7 +75,7 @@ class LoginPage extends StatelessWidget {
     final response = await service.loginGoogle();
 
     if (response.isOk()) {
-      NavigatorHelper.push(context, HomePage());
+      NavigatorHelper.pushReplacement(context, HomePage());
     } else {
       Alerts.alert(context, "Erro", response.msg);
     }
@@ -88,7 +88,7 @@ class LoginPage extends StatelessWidget {
     final response = await service.loginEmailPassword();
 
     if (response.isOk()) {
-      NavigatorHelper.push(context, HomePage());
+      NavigatorHelper.pushReplacement(context, HomePage());
     } else {
       Alerts.alert(context, "Erro", response.msg);
     }

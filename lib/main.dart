@@ -1,3 +1,4 @@
+import 'package:ajudafome/pages/home_page.dart';
 import 'package:ajudafome/pages/login_page.dart';
 import 'package:flutter/material.dart';
 

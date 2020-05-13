@@ -156,6 +156,8 @@ class _SignupPageState extends State<SignupPage> {
     try {
       final service = FirebaseService();
 
+      print("Cadastrando usuário");
+
       final response =
           await service.signup(tName.text, tEmail.text, tPassword.text);
 
