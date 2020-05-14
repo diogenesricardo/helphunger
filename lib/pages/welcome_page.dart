@@ -5,12 +5,12 @@ import 'package:ajudafome/widgets/drawer_list.dart';
 import 'package:ajudafome/widgets/button_help.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class WelcomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

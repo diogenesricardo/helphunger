@@ -1,8 +1,7 @@
 import 'package:ajudafome/models/user.dart';
-import 'package:ajudafome/pages/home_page.dart';
+import 'package:ajudafome/pages/welcome_page.dart';
 import 'package:ajudafome/utils/alert.dart';
-import 'package:ajudafome/utils/api_response.dart';
-import 'package:ajudafome/utils/firebase_service.dart';
+import 'package:ajudafome/services/firebase_service.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:flutter/material.dart';
 
@@ -164,7 +163,7 @@ class _SignupPageState extends State<SignupPage> {
       if (response.ok) {
 //        userModel.savePrefs();
 
-        NavigatorHelper.push(context, HomePage());
+        NavigatorHelper.push(context, WelcomePage());
       } else {
         Alerts.alert(context, "Erro", response.msg);
       }
