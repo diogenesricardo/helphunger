@@ -1,6 +1,5 @@
 import 'package:ajudafome/models/user.dart';
-import 'package:ajudafome/pages/login_page.dart';
-import 'package:ajudafome/utils/firebase_service.dart';
+import 'package:ajudafome/services/firebase_service.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -113,9 +112,8 @@ class DrawerList extends StatelessWidget {
     final service = FirebaseService();
     service.logout();
 
-    print("Logout");
     NavigatorHelper.pop(context);
-    NavigatorHelper.pushReplacement(context, LoginPage());
+//    NavigatorHelper.pushReplacement(context, LoginPage());
     User.clear();
   }
 }

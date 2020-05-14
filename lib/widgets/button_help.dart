@@ -15,7 +15,7 @@ class ButtonHelp extends StatelessWidget {
         title,
         style: new TextStyle(
           color: Colors.black,
-          fontSize: 16,
+          fontSize: 18,
         ),
       ),
       onPressed: onPressed,
