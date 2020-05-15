@@ -1,7 +1,7 @@
-import 'package:ajudafome/pages/home_page.dart';
+import 'package:ajudafome/pages/welcome_page.dart';
 import 'package:ajudafome/pages/signup_page.dart';
 import 'package:ajudafome/utils/alert.dart';
-import 'package:ajudafome/utils/firebase_service.dart';
+import 'package:ajudafome/services/firebase_service.dart';
 import 'package:ajudafome/widgets/button_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
               FacebookSignInButton(
                   borderRadius: 10.0,
                   onPressed: () {
-                    NavigatorHelper.push(context, HomePage());
+                    NavigatorHelper.push(context, WelcomePage());
                   }),
               GoogleSignInButton(
                 borderRadius: 10.0,
@@ -75,7 +75,11 @@ class LoginPage extends StatelessWidget {
     final response = await service.loginGoogle();
 
     if (response.isOk()) {
+<<<<<<< HEAD
       NavigatorHelper.pushReplacement(context, HomePage());
+=======
+      NavigatorHelper.pushReplacement(context, WelcomePage());
+>>>>>>> 1187d86c8b09e2559d27c27df7b52014edba9ab8
     } else {
       Alerts.alert(context, "Erro", response.msg);
     }
@@ -88,7 +92,11 @@ class LoginPage extends StatelessWidget {
     final response = await service.loginEmailPassword();
 
     if (response.isOk()) {
+<<<<<<< HEAD
       NavigatorHelper.pushReplacement(context, HomePage());
+=======
+      NavigatorHelper.pushReplacement(context, WelcomePage());
+>>>>>>> 1187d86c8b09e2559d27c27df7b52014edba9ab8
     } else {
       Alerts.alert(context, "Erro", response.msg);
     }

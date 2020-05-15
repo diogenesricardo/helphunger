@@ -23,8 +23,10 @@ class FirebaseService {
     print("signed in " + fuser.user.displayName);
 
     // Cria um usuario do app
-    final user =
-        User(fuser.user.displayName, fuser.user.email, fuser.user.email);
+    final user = User();
+    user.nome = fuser.user.displayName;
+    user.email = fuser.user.email;
+    user.urlFoto = fuser.user.photoUrl;
     user.save();
 
     // Resposta genérica
@@ -38,8 +40,11 @@ class FirebaseService {
     print("signed in " + fuser.user.email ?? "Novo usuário");
 
     // Cria um usuario do app
-    final user = User(fuser.user.displayName ?? "Novo usuário",
-        fuser.user.email, fuser.user.email);
+    final user = User();
+    user.nome = fuser.user.displayName;
+    user.email = fuser.user.email;
+    user.urlFoto = fuser.user.photoUrl;
+
     user.save();
 
     // Resposta genérica
@@ -51,7 +56,6 @@ class FirebaseService {
       // Usuario do Firebase
       final AuthResult fUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-
 
       final userUpdateInfo = UserUpdateInfo();
       userUpdateInfo.displayName = name;

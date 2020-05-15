@@ -1,8 +1,7 @@
 import 'package:ajudafome/models/user.dart';
-import 'package:ajudafome/pages/home_page.dart';
+import 'package:ajudafome/pages/welcome_page.dart';
 import 'package:ajudafome/utils/alert.dart';
-import 'package:ajudafome/utils/api_response.dart';
-import 'package:ajudafome/utils/firebase_service.dart';
+import 'package:ajudafome/services/firebase_service.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:flutter/material.dart';
 
@@ -156,13 +155,19 @@ class _SignupPageState extends State<SignupPage> {
     try {
       final service = FirebaseService();
 
+      print("Cadastrando usuário");
+
       final response =
           await service.signup(tName.text, tEmail.text, tPassword.text);
 
       if (response.ok) {
 //        userModel.savePrefs();
 
+<<<<<<< HEAD
         NavigatorHelper.pushReplacement(context, HomePage());
+=======
+        NavigatorHelper.push(context, WelcomePage());
+>>>>>>> 1187d86c8b09e2559d27c27df7b52014edba9ab8
       } else {
         Alerts.alert(context, "Erro", response.msg);
       }
