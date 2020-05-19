@@ -163,11 +163,8 @@ class _SignupPageState extends State<SignupPage> {
       if (response.ok) {
 //        userModel.savePrefs();
 
-<<<<<<< HEAD
-        NavigatorHelper.pushReplacement(context, HomePage());
-=======
         NavigatorHelper.push(context, WelcomePage());
->>>>>>> 1187d86c8b09e2559d27c27df7b52014edba9ab8
+
       } else {
         Alerts.alert(context, "Erro", response.msg);
       }

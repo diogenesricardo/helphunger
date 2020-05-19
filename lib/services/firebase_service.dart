@@ -1,12 +1,15 @@
 import 'package:ajudafome/models/response.dart';
 import 'package:ajudafome/models/user.dart';
+import 'package:ajudafome/utils/current-user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   Future<Response> loginGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
@@ -22,11 +25,18 @@ class FirebaseService {
     final AuthResult fuser = await _auth.signInWithCredential(credential);
     print("signed in " + fuser.user.displayName);
 
+    //Associa o uid a classe global.
+    CurrentUser.uid = fuser.user.uid;
+    CurrentUser.displayName = fuser.user.displayName;
+
+    Firestore.instance.collection('books').document()
+        .setData({ 'title': 'title', 'author': 'author' });
+
     // Cria um usuario do app
-    final user = User();
-    user.nome = fuser.user.displayName;
+    var user = User();
+    user.name = fuser.user.displayName;
     user.email = fuser.user.email;
-    user.urlFoto = fuser.user.photoUrl;
+    user.urlPhoto = fuser.user.photoUrl;
     user.save();
 
     // Resposta genérica
@@ -39,11 +49,15 @@ class FirebaseService {
         email: "anakin@gmail.com", password: "123456");
     print("signed in " + fuser.user.email ?? "Novo usuário");
 
+    //Associa o uid a classe global.
+    CurrentUser.uid = fuser.user.uid;
+    CurrentUser.displayName = fuser.user.displayName;
+
     // Cria um usuario do app
-    final user = User();
-    user.nome = fuser.user.displayName;
+    var user = User();
+    user.name = fuser.user.displayName;
     user.email = fuser.user.email;
-    user.urlFoto = fuser.user.photoUrl;
+    user.urlPhoto = fuser.user.photoUrl;
 
     user.save();
 

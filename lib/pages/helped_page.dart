@@ -1,4 +1,7 @@
+import 'package:ajudafome/services/firebase_service.dart';
+import 'package:ajudafome/services/user_service.dart';
 import 'package:ajudafome/utils/alert.dart';
+import 'package:ajudafome/utils/current-user.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -100,8 +103,12 @@ class HelpedPage extends StatelessWidget {
     return null;
   }
 
-  _onClickContinuar(context) {
+  _onClickContinuar(context) async{
     print("Ajuda solicitada");
+    print(CurrentUser.uid);
+
+//    await UserService().requestHelp("2ugm9sISPnUICguJHH1t");
+    await UserService().requestHelp(CurrentUser.uid);
 
     Alerts.alert(context, "Ajuda solicitada", "Aguarde o contato e tenha fé");
   }
