@@ -4,23 +4,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/src/widgets/async.dart';
 
 class UserService {
-  getUsers() => _users.snapshots();
+  get _helpedUsers => Firestore.instance.collection("helped-users");
 
-  get _users => Firestore.instance.collection("helpers");
+  get _helperUsers => Firestore.instance.collection("helpers");
 
-  List<User> toList(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return snapshot.data.documents
-        .map((document) => User.fromMap(document.data))
-        .toList();
-  }
+  getHelpedUsers() => _helpedUsers.snapshots();
 
   Future<bool> requestHelp(uid) async {
-    DocumentReference documentReference = _users.document(uid);
+    DocumentReference documentReference = _helpedUsers.document(uid);
 
     documentReference.setData({
       "id": CurrentUser.uid,
-      "nome": CurrentUser.displayName,
-      "askedHelp": false
+      "name": CurrentUser.displayName,
+      "askedHelp": true
     });
 
     DocumentSnapshot documentSnapshot = await documentReference.get();
@@ -33,13 +29,23 @@ class UserService {
     return false;
   }
 
-  Future<bool> exists(User user) async {
+  Future<bool> existsHelpedUsers(User user) async {
     // Busca o user no Firestore
-    var document = _users.document("${user.id}");
+    var document = _helpedUsers.document("${user.id}");
 
     var documentSnapshot = await document.get();
 
-    // Verifica se o user está favoritado
+    // Verifica se o user já existe
+    return await documentSnapshot.exists;
+  }
+
+  Future<bool> existsHelperUsers(User user) async {
+    // Busca o user no Firestore
+    var document = _helperUsers.document("${user.id}");
+
+    var documentSnapshot = await document.get();
+
+    // Verifica se o user já existe
     return await documentSnapshot.exists;
   }
 }

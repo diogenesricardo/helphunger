@@ -46,7 +46,7 @@ class FirebaseService {
   Future<Response> loginEmailPassword() async {
     // Usuario do Firebase
     final AuthResult fuser = await _auth.signInWithEmailAndPassword(
-        email: "anakin@gmail.com", password: "123456");
+        email: "luke2@gmail.com", password: "123456");
     print("signed in " + fuser.user.email ?? "Novo usuário");
 
     //Associa o uid a classe global.
@@ -75,9 +75,13 @@ class FirebaseService {
       userUpdateInfo.displayName = name;
       userUpdateInfo.photoUrl =
           "https://static.thenounproject.com/png/26617-200.png";
-      fUser.user.updateProfile(userUpdateInfo);
+      await fUser.user.updateProfile(userUpdateInfo);
 
       print("Usuario criado: ${fUser.user.displayName}");
+
+      CurrentUser.uid = fUser.user.uid;
+      CurrentUser.displayName = fUser.user.displayName;
+
       // Resposta genérica
       return Response(true, "Usuário criado com sucesso");
     } catch (error) {

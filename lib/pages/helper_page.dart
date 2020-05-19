@@ -29,7 +29,7 @@ class _HelperPageState extends State<HelperPage> {
     return Container(
       color: Colors.brown[100],
       child: StreamBuilder<QuerySnapshot>(
-        stream: UserService().getUsers(),
+        stream: UserService().getHelpedUsers(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text("Não foi possível buscar as pessoas");
@@ -42,19 +42,16 @@ class _HelperPageState extends State<HelperPage> {
           }
 
           List<User> users =
-          snapshot.data.documents.map((DocumentSnapshot document) {
+              snapshot.data.documents.map((DocumentSnapshot document) {
             return User.fromMap(document.data);
           }).toList();
 
+          print(users[0]);
+
           return ListView.builder(
-            itemBuilder: (context, index) => Center(
-              child: Text(
-                users[index].name ?? "Ninguém precisando de ajuda no aplicativo",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
+            itemBuilder: (context, index) => ListTile(
+              title: Text(users[index].name),
+              subtitle: Text(users[index].wasHelped == true ? "Precisa de ajuda" : "Obteve ajuda há 10 dias"),
             ),
             itemCount: users.length,
           );

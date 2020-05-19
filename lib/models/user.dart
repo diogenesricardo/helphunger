@@ -50,6 +50,13 @@ class User {
   static clear() {
     Prefs.setString("user.prefs", "");
   }
+
+  @override
+  String toString() {
+    return 'User{email: $email, name: $name, wasHelped: $wasHelped}';
+  }
+
+
 }
 
 User userFromJson(String str) => User.fromMap(json.decode(str));
