@@ -1,5 +1,7 @@
 import 'package:ajudafome/pages/helped_page.dart';
 import 'package:ajudafome/pages/helper_page.dart';
+import 'package:ajudafome/services/firebase_service.dart';
+import 'package:ajudafome/utils/current-user.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:ajudafome/widgets/drawer_list.dart';
 import 'package:ajudafome/widgets/button_help.dart';
@@ -29,6 +31,8 @@ class _WelcomePageState extends State<WelcomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            Text("O que deseja? " + CurrentUser.displayName),
+            SizedBox(height: 150),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

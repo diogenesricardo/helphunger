@@ -23,44 +23,13 @@ class _HelperPageState extends State<HelperPage> {
       ),
       body: _body(),
     );
-
-    /*return StreamBuilder<QuerySnapshot>(
-      stream: UserService().getUsers(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text("Não foi possível buscar as pessoas");
-        }
-
-        if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        List<User> users =
-            snapshot.data.documents.map((DocumentSnapshot document) {
-          return User.fromMap(document.data);
-        }).toList();
-
-        return ListView.builder(
-          itemBuilder: (context, index) => Text(
-            users[index].nome,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-            ),
-          ),
-          itemCount: users.length,
-        );
-      },
-    );*/
   }
 
   _body() {
     return Container(
       color: Colors.brown[100],
       child: StreamBuilder<QuerySnapshot>(
-        stream: UserService().getUsers(),
+        stream: UserService().getHelpedUsers(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text("Não foi possível buscar as pessoas");
@@ -73,19 +42,16 @@ class _HelperPageState extends State<HelperPage> {
           }
 
           List<User> users =
-          snapshot.data.documents.map((DocumentSnapshot document) {
+              snapshot.data.documents.map((DocumentSnapshot document) {
             return User.fromMap(document.data);
           }).toList();
 
+          print(users[0]);
+
           return ListView.builder(
-            itemBuilder: (context, index) => Center(
-              child: Text(
-                users[index].nome,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
+            itemBuilder: (context, index) => ListTile(
+              title: Text(users[index].name),
+              subtitle: Text(users[index].wasHelped == true ? "Precisa de ajuda" : "Obteve ajuda há 10 dias"),
             ),
             itemCount: users.length,
           );
