@@ -12,15 +12,20 @@ void initFcm() {
     print("\n******\nFirebase Token $token\n******\n");
   });
 
-  fcm.subscribeToTopic("all");
+  // Você pode enviar notificação para um tópico específico
+  // (perfis, tipo de clientes, categorias, etc) lá no client do firebase
+  fcm.subscribeToTopic("donos de dogs");
 
   fcm.configure(
+    // Com o app aberto recebendo a notificação
     onMessage: (Map<String, dynamic> message) async {
       print('\n\n\n*** on message $message');
     },
+    // Com o app em background recebendo a notificação
     onResume: (Map<String, dynamic> message) async {
       print('\n\n\n*** on resume $message');
     },
+    // Com o app fechado recebendo a notificação
     onLaunch: (Map<String, dynamic> message) async {
       print('\n\n\n*** on launch $message');
     },
