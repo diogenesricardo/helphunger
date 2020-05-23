@@ -5,33 +5,36 @@ import 'package:ajudafome/utils/prefs.dart';
 class User {
   String id;
   String email;
-  String nome;
-  String urlFoto;
+  String name;
+  String urlPhoto;
   String password;
+  bool wasHelped;
 
   User({
     this.email,
-    this.nome,
-    this.urlFoto,
+    this.name,
+    this.urlPhoto,
     this.password,
+    this.wasHelped,
   });
 
   factory User.fromMap(Map<String, dynamic> json) => User(
-        email: json["email"],
-        nome: json["nome"],
-        urlFoto: json["urlFoto"],
-        password: json["password"],
-      );
+      email: json["email"],
+      name: json["name"],
+      urlPhoto: json["urlPhoto"],
+      password: json["password"],
+      wasHelped: json["wasHelped"]);
 
   Map<String, dynamic> toMap() => {
         "email": email,
-        "nome": nome,
-        "urlFoto": urlFoto,
+        "name": name,
+        "urlPhoto": urlPhoto,
         "password": password,
+        "wasHelped": wasHelped,
       };
 
   void save() {
-    final map = {"nome": nome, "urlFoto": urlFoto, "email": email};
+    final map = {"name": name, "urlPhoto": urlPhoto, "email": email};
     Prefs.setString("user.prefs", json.encode(map));
   }
 
@@ -47,6 +50,13 @@ class User {
   static clear() {
     Prefs.setString("user.prefs", "");
   }
+
+  @override
+  String toString() {
+    return 'User{email: $email, name: $name, wasHelped: $wasHelped}';
+  }
+
+
 }
 
 User userFromJson(String str) => User.fromMap(json.decode(str));

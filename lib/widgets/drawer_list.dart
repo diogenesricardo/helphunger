@@ -1,4 +1,5 @@
 import 'package:ajudafome/models/user.dart';
+import 'package:ajudafome/pages/login_page.dart';
 import 'package:ajudafome/services/firebase_service.dart';
 import 'package:ajudafome/utils/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,23 +55,16 @@ class DrawerList extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                print("Item 1");
+                print("Doações Recebidas");
               },
               title: Text("Item 1"),
               leading: Icon(Icons.star),
             ),
             ListTile(
               onTap: () {
-                print("Item 2");
+                print("Doações efetuadas");
               },
               title: Text("Item 2"),
-              leading: Icon(Icons.star),
-            ),
-            ListTile(
-              onTap: () {
-                print("Item 3");
-              },
-              title: Text("Item 3"),
               leading: Icon(Icons.star),
             ),
             ListTile(
@@ -79,13 +73,6 @@ class DrawerList extends StatelessWidget {
               },
               title: Text("Configurações"),
               leading: Icon(Icons.settings),
-            ),
-            ListTile(
-              onTap: () {
-                print("Ajuda");
-              },
-              title: Text("Visite o site"),
-              leading: Icon(Icons.web),
             ),
             ListTile(
               onTap: () {
@@ -112,8 +99,7 @@ class DrawerList extends StatelessWidget {
     final service = FirebaseService();
     service.logout();
 
-    NavigatorHelper.pop(context);
-//    NavigatorHelper.pushReplacement(context, LoginPage());
+    NavigatorHelper.pushReplacement(context, LoginPage());
     User.clear();
   }
 }

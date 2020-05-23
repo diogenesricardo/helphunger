@@ -2,6 +2,7 @@ import 'package:ajudafome/pages/welcome_page.dart';
 import 'package:ajudafome/pages/signup_page.dart';
 import 'package:ajudafome/utils/alert.dart';
 import 'package:ajudafome/services/firebase_service.dart';
+import 'package:ajudafome/utils/firebase-message.dart';
 import 'package:ajudafome/widgets/button_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
@@ -10,6 +11,9 @@ import 'package:ajudafome/utils/nav.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    initFcm();
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Ajuda Fome"),
