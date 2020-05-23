@@ -7,12 +7,15 @@ import 'package:ajudafome/widgets/button_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:ajudafome/utils/nav.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    initFcm();
+//    initFcm();
+
+    initRemoteConfig();
 
     return Scaffold(
         appBar: AppBar(
@@ -103,4 +106,23 @@ class LoginPage extends StatelessWidget {
 
     NavigatorHelper.push(context, SignupPage());
   }
-}
+
+  initRemoteConfig() {
+
+    RemoteConfig.instance.then((remoteConfig){
+      remoteConfig.setConfigSettings(RemoteConfigSettings(debugMode: true));
+
+      try {
+        remoteConfig.fetch(expiration: const Duration(minutes: 1));
+        remoteConfig.activateFetched();
+      } catch(error) {
+        print("Remote Config: $error");
+      }
+
+      final mensagem = remoteConfig.getString("mensagem");
+
+      print('Mensagem: $mensagem');
+    });
+  }
+
+  }
