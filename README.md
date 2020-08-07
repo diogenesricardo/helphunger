@@ -1,4 +1,4 @@
-# ajudafome
+# Ajuda fome
 
 Uma aplicação para ajudar a quem tem fome p2p
 
